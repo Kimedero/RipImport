@@ -7,7 +7,7 @@ IT ONLY IMPORTS DIFFUSE TEXTURE, ADDITIONAL TEXTURES HAVE TO BE ADDED MANUALLY B
 ![Car](https://i.imgur.com/awlGf0X.png)
 
 ## Download:
-https://github.com/xpawelsky/RipImport/releases/
+https://github.com/Kimedero/RipImport/releases/
 
 ## Installation:
 ```
