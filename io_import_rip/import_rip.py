@@ -225,13 +225,17 @@ def read_rip_file(file, object_name, tex_path):
 ######################################################
 # IMPORT
 ######################################################
-def load_rip(filepath,
-             context):
+def load_rip(filepath, context):
 
     print("importing rip: %r..." % (filepath))
 
-    time1 = time.clock()
-    file = open(filepath, 'rb')
+    # here we use perf_counter() because clock() has been removed in Python 3.8. We can also use process_time() but it has a slight difference to perf_counter()
+    # this code is simply to count the import time, btw. If it brings you errors you can comment it out without consequence along with every other instance of 'time'
+    # time1 = time.clock()
+    time1 = time.perf_counter()
+    # time1 = time.process_time()
+
+    file = open(filepath, 'rb') # 'rb' means reading in binary mode
 
     # start reading our rip file
     filepath_basename = os.path.basename(filepath)
@@ -239,7 +243,8 @@ def load_rip(filepath,
     
     read_rip_file(file, filepath_basename[:-4], texture_search_path)
 
-    print(" done in %.4f sec." % (time.clock() - time1))
+    # print(" done in %.4f sec." % (time.clock() - time1))
+    print(" done in %.4f sec." % (time.perf_counter() - time1))
     file.close()
 
 
@@ -284,8 +289,7 @@ def load(operator,
         if file.lower().endswith(".rip"):
           load_rip(os.path.join(ripdir, file), context)
     else:
-      load_rip(filepath,
-              context,
-              )
+      load_rip(filepath, context, )
 
     return {'FINISHED'}
+    
