@@ -9,7 +9,7 @@
 
 bl_info = {
     "name": "NinjaRipper RIP Format",
-    "author": "Dummiesman, 2.8 compatibility by xpawelsky",
+    "author": "Dummiesman, 2.8 compatibility by xpawelsky, 3.2 compatibility by Kimedero",
     "version": (0, 0, 2),
     "blender": (2, 80, 0),
     "location": "File > Import",
@@ -21,17 +21,8 @@ bl_info = {
     "category": "Import"}
 
 import bpy
-from bpy.props import (
-        BoolProperty,
-        EnumProperty,
-        FloatProperty,
-        StringProperty,
-        CollectionProperty,
-        )
-from bpy_extras.io_utils import (
-        ImportHelper,
-        ExportHelper,
-        )
+from bpy.props import (BoolProperty, EnumProperty, FloatProperty, StringProperty, CollectionProperty,)
+from bpy_extras.io_utils import (ImportHelper, ExportHelper,)
 
 class ImportRIP(bpy.types.Operator, ImportHelper):
     """Import from RIP file format (.rip)"""
@@ -42,29 +33,28 @@ class ImportRIP(bpy.types.Operator, ImportHelper):
     filename_ext = ".rip"
     filter_glob = StringProperty(default="*.rip", options={'HIDDEN'})
 
-    semantic_setting = bpy.props.EnumProperty(items= (('AUTO', 'Auto', 'Automatically detect vertex layout'),      
-                                                      ('MANUAL', 'Manual', 'Enter vertex layout details manually')),      
-                                                      name = "Vertex Layout") 
-
+    semantic_setting : bpy.props.EnumProperty(items= (('AUTO', 'Auto', 'Automatically detect vertex layout'), ('MANUAL', 'Manual', 'Enter vertex layout details manually')), name = "Vertex Layout") 
     
-    vxlayout = bpy.props.IntProperty(name="VX", default=0)
-    vylayout = bpy.props.IntProperty(name="VY", default=1)
-    vzlayout = bpy.props.IntProperty(name="VZ", default=2)
+    vxlayout : bpy.props.IntProperty(name="VX", default=0)
+    vylayout : bpy.props.IntProperty(name="VY", default=1)
+    vzlayout : bpy.props.IntProperty(name="VZ", default=2)
     
-    nxlayout = bpy.props.IntProperty(name="NX", default=3)
-    nylayout = bpy.props.IntProperty(name="NY", default=4)
-    nzlayout = bpy.props.IntProperty(name="NZ", default=5)
+    nxlayout : bpy.props.IntProperty(name="NX", default=3)
+    nylayout : bpy.props.IntProperty(name="NY", default=4)
+    nzlayout : bpy.props.IntProperty(name="NZ", default=5)
     
-    tulayout = bpy.props.IntProperty(name="TU", default=6)
-    tvlayout = bpy.props.IntProperty(name="TV", default=7)
+    tulayout : bpy.props.IntProperty(name="TU", default=6)
+    tvlayout : bpy.props.IntProperty(name="TV", default=7)
     
-    scale = bpy.props.FloatProperty(name="Scale", default=1.0)
+    scale : bpy.props.FloatProperty(name="Scale", default=1.0)
     
-    reusemats = BoolProperty(name="Re-use materials", description="Re-use existing materials from other RIP files (especially useful when loading an entire folder)", default=True)
-    importall = BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
+    reusemats : bpy.props.BoolProperty(name="Re-use materials", description="Re-use existing materials from other RIP files (especially useful when loading an entire folder)", default=True)
+    #importall = BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
+    importall : bpy.props.BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
     
     def draw(self, context):
         layout = self.layout
+
         sub = layout.row()
         sub.prop(self, "semantic_setting")
         
@@ -92,11 +82,7 @@ class ImportRIP(bpy.types.Operator, ImportHelper):
         
     def execute(self, context):
         from . import import_rip
-        keywords = self.as_keywords(ignore=("axis_forward",
-                                            "axis_up",
-                                            "filter_glob",
-                                            "check_existing",
-                                            ))
+        keywords = self.as_keywords(ignore=("axis_forward", "axis_up", "filter_glob", "check_existing",))
 
         return import_rip.load(self, context, **keywords)
 
@@ -110,7 +96,7 @@ def menu_func_import(self, context):
 def register():
 	from bpy.utils import register_class
 	register_class(ImportRIP)
-	
+		
 	bpy.types.TOPBAR_MT_file_import.append(menu_func_import)
 		
 def unregister():
@@ -132,3 +118,4 @@ def unregister():
 
 if __name__ == "__main__":
     register()
+    
