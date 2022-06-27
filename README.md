@@ -1,6 +1,6 @@
 # Blender 3.2 .rip (NinjaRipper) import Add-On
 
-Initially created by Dummiesman, updated by xpawelsky to make it work with Blender 2.8 *(tested with 19-01-2019 8ba86020cc50)* and now updated by me to make it work in Blender 3.2 *(tested in Blender 3.0.1 and Blender 3.2.0)
+Initially created by Dummiesman, updated by xpawelsky to make it work with Blender 2.8 *(tested with 19-01-2019 8ba86020cc50)* and now updated by me to make it work in Blender 3.2 *(tested in Blender 3.0.1 and Blender 3.2.0)*
 
 IT ONLY IMPORTS DIFFUSE TEXTURE, ADDITIONAL TEXTURES HAVE TO BE ADDED MANUALLY BY THE USER
 
