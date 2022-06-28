@@ -33,7 +33,7 @@ class ImportRIP(bpy.types.Operator, ImportHelper):
     filename_ext = ".rip"
     filter_glob = StringProperty(default="*.rip", options={'HIDDEN'})
 
-    semantic_setting : bpy.props.EnumProperty(items= (('AUTO', 'Auto', 'Automatically detect vertex layout'), ('MANUAL', 'Manual', 'Enter vertex layout details manually')), name = "Vertex Layout") 
+    semantic_setting : EnumProperty(items= (('AUTO', 'Auto', 'Automatically detect vertex layout'), ('MANUAL', 'Manual', 'Enter vertex layout details manually')), name = "Vertex Layout") 
     
     vxlayout : IntProperty(name="VX", default=0)
     vylayout : IntProperty(name="VY", default=1)
@@ -49,7 +49,6 @@ class ImportRIP(bpy.types.Operator, ImportHelper):
     scale : FloatProperty(name="Scale", default=1.0)
     
     reusemats : BoolProperty(name="Re-use materials", description="Re-use existing materials from other RIP files (especially useful when loading an entire folder)", default=True)
-    #importall = BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
     importall : BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
     
     def draw(self, context):
