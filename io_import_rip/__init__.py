@@ -21,7 +21,7 @@ bl_info = {
     "category": "Import"}
 
 import bpy
-from bpy.props import (BoolProperty, EnumProperty, FloatProperty, StringProperty, CollectionProperty,)
+from bpy.props import (BoolProperty, EnumProperty, FloatProperty, StringProperty, CollectionProperty, IntProperty)
 from bpy_extras.io_utils import (ImportHelper, ExportHelper,)
 
 class ImportRIP(bpy.types.Operator, ImportHelper):
@@ -35,22 +35,22 @@ class ImportRIP(bpy.types.Operator, ImportHelper):
 
     semantic_setting : bpy.props.EnumProperty(items= (('AUTO', 'Auto', 'Automatically detect vertex layout'), ('MANUAL', 'Manual', 'Enter vertex layout details manually')), name = "Vertex Layout") 
     
-    vxlayout : bpy.props.IntProperty(name="VX", default=0)
-    vylayout : bpy.props.IntProperty(name="VY", default=1)
-    vzlayout : bpy.props.IntProperty(name="VZ", default=2)
+    vxlayout : IntProperty(name="VX", default=0)
+    vylayout : IntProperty(name="VY", default=1)
+    vzlayout : IntProperty(name="VZ", default=2)
     
-    nxlayout : bpy.props.IntProperty(name="NX", default=3)
-    nylayout : bpy.props.IntProperty(name="NY", default=4)
-    nzlayout : bpy.props.IntProperty(name="NZ", default=5)
+    nxlayout : IntProperty(name="NX", default=3)
+    nylayout : IntProperty(name="NY", default=4)
+    nzlayout : IntProperty(name="NZ", default=5)
     
-    tulayout : bpy.props.IntProperty(name="TU", default=6)
-    tvlayout : bpy.props.IntProperty(name="TV", default=7)
+    tulayout : IntProperty(name="TU", default=6)
+    tvlayout : IntProperty(name="TV", default=7)
     
-    scale : bpy.props.FloatProperty(name="Scale", default=1.0)
+    scale : FloatProperty(name="Scale", default=1.0)
     
-    reusemats : bpy.props.BoolProperty(name="Re-use materials", description="Re-use existing materials from other RIP files (especially useful when loading an entire folder)", default=True)
+    reusemats : BoolProperty(name="Re-use materials", description="Re-use existing materials from other RIP files (especially useful when loading an entire folder)", default=True)
     #importall = BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
-    importall : bpy.props.BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
+    importall : BoolProperty(name="Import entire folder", description="Import all meshes in this folder", default=False)
     
     def draw(self, context):
         layout = self.layout
